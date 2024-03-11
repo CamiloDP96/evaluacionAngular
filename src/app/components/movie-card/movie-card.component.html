@@ -1,0 +1,17 @@
+<div class="card-container" >
+    <mat-card class="reserv-card margins" *ngFor="let movie of movies">
+        <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle>{{ movie.original_title }} ({{ movie.original_title_romanised }})</mat-card-subtitle>
+        </mat-card-header>
+        <!-- Aquí puedes agregar la imagen de la película si lo deseas -->
+        <mat-card-content>
+        <p>{{ movie.description }}</p>
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+        <p><strong>Producer:</strong> {{ movie.producer }}</p>
+        <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+        <p><strong>Running Time:</strong> {{ movie.running_time }} mins</p>
+        <p><strong>Rotten Tomatoes Score:</strong> {{ movie.rt_score }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
