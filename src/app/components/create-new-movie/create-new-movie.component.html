@@ -1,0 +1,57 @@
+<div class="colums margins">
+    <span class="margins">New Movie</span>
+    <form [formGroup]="newMovieForm" class="forms" (submit)="onSubmit()">
+        <div class="colums">
+            <div class="rows">
+                <div class="colums margins">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" formControlName="title">
+                    <label *ngIf="newMovieForm.get('title')?.touched && newMovieForm.get('title')?.errors?.['required']" class="error-message">Title is required</label>
+
+                    <label for="original_title">Original Title</label>
+                    <input type="text" id="original_title" class="form-control" formControlName="original_title">
+                    <label *ngIf="newMovieForm.get('original_title')?.touched && newMovieForm.get('original_title')?.errors?.['required']" class="error-message">Original Title is required</label>
+
+                    <label for="original_title_romanised">Original Title Romanised</label>
+                    <input type="text" id="original_title_romanised" class="form-control" formControlName="original_title_romanised">
+                    <label *ngIf="newMovieForm.get('original_title_romanised')?.touched && newMovieForm.get('original_title_romanised')?.errors?.['required']" class="error-message">Original Title Romanised is required</label>
+
+                    <label for="description">Description</label>
+                    <input id="description" class="form-control" formControlName="description">
+                    <label *ngIf="newMovieForm.get('description')?.touched && newMovieForm.get('description')?.errors?.['required']" class="error-message">Description is required</label>
+                </div>
+
+                <div class="colums margins">
+                    <label for="director">Director</label>
+                    <input type="text" id="director" class="form-control" formControlName="director">
+                    <label *ngIf="newMovieForm.get('director')?.touched && newMovieForm.get('director')?.errors?.['required']" class="error-message">Director is required</label>
+
+                    <label for="producer">Producer</label>
+                    <input type="text" id="producer" class="form-control" formControlName="producer">
+                    <label *ngIf="newMovieForm.get('producer')?.touched && newMovieForm.get('producer')?.errors?.['required']" class="error-message">Producer is required</label>
+
+                    <label for="release_date">Release Date</label>
+                    <input type="text" id="release_date" class="form-control" formControlName="release_date">
+                    <label *ngIf="newMovieForm.get('release_date')?.touched && newMovieForm.get('release_date')?.errors?.['required']" class="error-message">Release Date is required</label>
+                    <label *ngIf="newMovieForm.get('release_date')?.errors?.['pattern']" class="error-message">Invalid format for Release Date</label>
+                    <label *ngIf="newMovieForm.get('release_date')?.errors?.['min']" class="error-message">Release Date must be greater than or equal to 1600</label>
+                    <label *ngIf="newMovieForm.get('release_date')?.errors?.['max']" class="error-message">Release Date must be less than or equal to 2500</label>
+
+                    <label for="running_time">Running Time</label>
+                    <input type="text" id="running_time" class="form-control" formControlName="running_time">
+                    <label *ngIf="newMovieForm.get('running_time')?.touched && newMovieForm.get('running_time')?.errors?.['required']" class="error-message">Running Time is required</label>
+                    <label *ngIf="newMovieForm.get('running_time')?.errors?.['pattern']" class="error-message">Invalid format for Running Time</label>
+                    <label *ngIf="newMovieForm.get('running_time')?.errors?.['min']" class="error-message">Running Time must be greater than or equal to 0</label>
+                    <label *ngIf="newMovieForm.get('running_time')?.errors?.['max']" class="error-message">Running Time must be less than or equal to 5000</label>
+                </div>
+            </div>
+            <label for="rt_score">Rotten Tomatoes Score</label>
+            <input type="text" id="rt_score" class="form-control" formControlName="rt_score">
+            <label *ngIf="newMovieForm.get('rt_score')?.touched && newMovieForm.get('rt_score')?.errors?.['required']" class="error-message">Rotten Tomatoes Score is required</label>
+            <label *ngIf="newMovieForm.get('rt_score')?.errors?.['pattern']" class="error-message">Invalid format for Rotten Tomatoes Score</label>
+            <label *ngIf="newMovieForm.get('rt_score')?.errors?.['min']" class="error-message">Rotten Tomatoes Score must be greater than or equal to 0</label>
+            <label *ngIf="newMovieForm.get('rt_score')?.errors?.['max']" class="error-message">Rotten Tomatoes Score must be less than or equal to 100</label>
+            <button class="primary button marginTop" type="submit" [disabled]="newMovieForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>

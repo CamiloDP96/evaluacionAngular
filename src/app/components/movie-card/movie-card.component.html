@@ -1,3 +1,7 @@
+<div class="rows">
+    <input type="text" class="search margins" [(ngModel)]="searchQuery" placeholder="Search for a movie" (keydown.enter)="filterMovies()">
+    <button class="button" (click)="filterMovies()">Go!</button>
+</div>
 <div class="card-container" >
     <mat-card class="reserv-card margins" *ngFor="let movie of movies">
         <mat-card-header>
@@ -13,5 +17,9 @@
         <p><strong>Running Time:</strong> {{ movie.running_time }} mins</p>
         <p><strong>Rotten Tomatoes Score:</strong> {{ movie.rt_score }}</p>
         </mat-card-content>
+        <div class="rows margins">
+            <button class="button marginRigth" (click)="deleteMovie(movie.id)">Delete</button>
+            <button class="button">Update</button>
+        </div>
     </mat-card>
 </div>
