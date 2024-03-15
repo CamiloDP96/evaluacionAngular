@@ -31,8 +31,8 @@ export class CreateNewMovieComponent implements OnInit{
       director: ['', Validators.required],
       producer: ['', Validators.required],
       release_date: ['', [Validators.required, Validators.pattern(/^-?\d+$/), Validators.min(1600), Validators.max(2500)]], // Place min and max validators within the array
-  running_time: ['', [Validators.required, Validators.pattern(/^-?\d+$/), Validators.min(0), Validators.max(5000)]], // Place min and max validators within the array
-  rt_score: ['', [Validators.required, Validators.pattern(/^-?\d+$/), Validators.min(0), Validators.max(100)]], // Place min and max validators within the array
+      running_time: ['', [Validators.required, Validators.pattern(/^-?\d+$/), Validators.min(0), Validators.max(5000)]], // Place min and max validators within the array
+      rt_score: ['', [Validators.required, Validators.pattern(/^-?\d+$/), Validators.min(0), Validators.max(100)]], // Place min and max validators within the array
     })
   }
 

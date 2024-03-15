@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreateNewMovieComponent } from './components/create-new-movie/create-new-movie.component';
 import { UpdateNewMovieComponent } from './components/update-new-movie/update-new-movie.component';
 import { HomeComponent } from './components/home/home.component';
+import { MovieUpdateComponent } from './components/movie-update/movie-update.component';
 
 
 
@@ -25,6 +26,7 @@ import { HomeComponent } from './components/home/home.component';
     CreateNewMovieComponent,
     UpdateNewMovieComponent,
     HomeComponent,
+    MovieUpdateComponent,
   ],
   imports: [
     BrowserModule,

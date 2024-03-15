@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateNewMovieComponent } from './components/create-new-movie/create-new-movie.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { HomeComponent } from './components/home/home.component';
+import { MovieUpdateComponent } from './components/movie-update/movie-update.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'movies',
     component: MovieCardComponent
+  },
+  {
+    path: 'update',
+    component: MovieUpdateComponent
   },
 ];
 

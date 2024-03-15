@@ -19,7 +19,7 @@
         </mat-card-content>
         <div class="rows margins">
             <button class="button marginRigth" (click)="deleteMovie(movie.id)">Delete</button>
-            <button class="button">Update</button>
+            <button class="button" [routerLink]="['/update']" [queryParams]="{ id: movie.id }">Update</button>
         </div>
     </mat-card>
 </div>
