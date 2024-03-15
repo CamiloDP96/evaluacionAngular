@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../interfaces/movie';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map, of, throwError } from 'rxjs';
 
 @Injectable({
@@ -21,11 +21,8 @@ export class MovieService {
   }
 
   obtenerDatoPorTitulo(titulo: string): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.baseUrl).pipe(
-      map((movies: Movie[]) =>
-        movies.filter(movie => movie.title.toLowerCase().includes(titulo.toLowerCase()))
-      )
-    );
+    const params = new HttpParams().set('title', titulo);
+    return this.http.get<Movie[]>(this.baseUrl, { params });
   }
 
   getAllMovies(): Observable<Movie[]> {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { catchError, forkJoin, of, throwError } from 'rxjs';
 import { Movie } from 'src/app/interfaces/movie';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -22,26 +22,31 @@ export class MovieCardComponent implements OnInit{
   filterMovies(): void {
     if (this.searchQuery) {
       forkJoin({
-        movieByTitle: this.movieService.getMovieByTitle(this.searchQuery),
-        moviesByTitle: this.movieService.obtenerDatoPorTitulo(this.searchQuery)
+        moviesByTitle: this.movieService.obtenerDatoPorTitulo(this.searchQuery).pipe(
+          catchError(error => {
+            console.error('Error fetching movies by title:', error);
+            return of([] as Movie[]); // Explicitly specify the type
+          })
+        ),
+        movieByTitle: this.movieService.getMovieByTitle(this.searchQuery).pipe(
+          catchError(error => {
+            console.error('Error fetching movie by title:', error);
+            return of(null); // Explicitly specify the type
+          })
+        )
       }).subscribe(
-        ({ movieByTitle, moviesByTitle }) => {
-          // Handle response for movieByTitle
-          this.movies = [movieByTitle];
-          this.filteredMovies = [movieByTitle];
-
-          // Handle response for moviesByTitle
-          // Note: If moviesByTitle returns multiple movies, you may need to decide how to handle them
-          // For now, we'll just set the movies and filteredMovies to the first movie in the array
-          if (moviesByTitle.length > 0) {
-            this.movies = moviesByTitle;
-            this.filteredMovies = moviesByTitle;
-          }
+        ({ moviesByTitle, movieByTitle }) => {
+          // Combine local storage movies and API movie if available
+          const apiMovie = movieByTitle ? [movieByTitle] : [];
+          this.movies = [...moviesByTitle, ...apiMovie]; // Explicitly specify the type
+          this.filteredMovies = this.movies.filter(movie =>
+            movie.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+          );
         },
-        error => {
-          console.error('Error fetching movies:', error);
-        }
-      );
+            error => {
+              console.error('Error filtering movies by title:', error);
+            }
+          );
     } else {
       forkJoin({
         allMovies: this.movieService.getAllMovies(),
